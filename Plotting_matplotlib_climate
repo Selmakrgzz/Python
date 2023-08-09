@@ -1,0 +1,13 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import math
+
+smoothTemp = np.loadtxt("./wheaterData.txt", usecols =(2))
+tempChange = np.loadtxt("./wheaterData.txt", usecols =(1))
+year = np.loadtxt("./wheaterData.txt", usecols =(0))
+
+plt.figure(figsize=(26,12))
+
+plt.plot(smoothTemp)
+
+plt.scatter(year, tempChange, color = 'r')
