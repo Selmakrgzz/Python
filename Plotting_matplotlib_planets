@@ -1,0 +1,21 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+dis_sun = np.array([0.39,  0.72, 1.00, 1.52, 5.20, 9.54, 19.22, 30.06, 39.48])
+years = np.array([0.24, 0.62, 1.00, 1.88, 11.86, 29.46, 84.01, 164.8, 248.09])
+names = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 
+         'Uranus', 'Neptune', 'Pluto']
+colors = np.array(["orange", "gray", "green", "red", "yellow", "beige", "brown", "magenta", "blue"])
+
+plt.xlim(-10, 45)
+plt.ylim(1, 300)
+
+plt.xlabel('Distance from the sun')
+plt.ylabel('Orbits in years')
+
+plt.scatter(dis_sun, years, c = colors, s=200)
+
+for i, txt in enumerate(names):
+    plt.annotate(txt, (dis_sun[i], years[i]))
+
+plt.show()
