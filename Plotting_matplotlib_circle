@@ -1,0 +1,15 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import math
+
+theta = np.array([0, int(math.pi/6), int(math.pi/4), int(math.pi/3), int(math.pi/2), int((2*math.pi)/3), int((3*math.pi)/4), int((5*math.pi)/6), int(math.pi), int((7*math.pi)/6), int((5*math.pi)/4), int((4*math.pi)/3), int((3*math.pi)/2), int((5*math.pi)/3), int((7*math.pi)/4), int((11*math.pi)/6)])
+
+R = 23
+
+for i in range(len(theta)):
+    x = np.array([R*math.cos(theta[i])])
+    y = np.array([R*math.sin(theta[i])])
+    plt.scatter(x, y)
+    plt.axis('equal')
+    
+plt.show()
