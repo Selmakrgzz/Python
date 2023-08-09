@@ -1,0 +1,91 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+#Defining the x points and the y points
+xpoints = np.array([7,12,23,29,35,44,51,59,68,87,89,125,145,155,159,163,167,175,188,212])
+ypoints = np.array([45,32,45,87,23,108,45,74,130,76,45,32,45,87,23,108,45,74,130,76])
+
+#Ranging the size of the plot
+plt.figure(figsize=(26,12))
+
+#Plotting the given points. Marking the peak points and setting color to blue.
+plt.plot(xpoints, ypoints, marker = 's', color = '#7882DF')
+
+#Marker options:
+"""
+- o (circle)
+- * (star)
+- v (triangle down)
+- ^ (triangle up)
+- < (triangle left)
+- > (triangle right)
+- s (square)
+- p (plus filled)
+- x (x)
+- X (x filled)
+- D (diamond)
+
+"""
+
+#Color options:
+"""
+b: blue
+g: green
+r: red
+c: cyan
+m: magenta
+y: yellow
+k: black
+w: white
+
+Can also use color values in hexadecimal
+
+Mor renkler: 
+- #9F72AF
+- #A362B3
+- #5E3884
+
+Kırmızı renkler:
+- #CE6B8F
+- #BF5454
+- #B50A0A
+
+Mavi renkler:
+- #4A69AF
+- #91ABE8
+- #687CAB
+- #466A93
+- #127A9A
+- #21677C
+- #7882DF
+
+Yeşil renkler:
+- #3C7166
+- #144A40
+- #7EAFA5
+- #279D2F
+
+"""
+
+#Naming the graph
+plt.title('Graph name')
+
+#Naming the axis
+plt.xlabel('x-axis')
+plt.ylabel('y-axis')
+
+#Ranging the x and y axis
+plt.xlim(1, 220)
+plt.ylim(1,150)
+
+#Displaying the x and y points on the axis
+plt.xticks(xpoints)
+plt.yticks(ypoints)
+
+#Showing the coordinates on the graph. Can adjust the decimals(%.2f...)
+for xy in zip(xpoints, ypoints):
+    plt.annotate('(%.f, %.f)' % xy, xy=xy)
+
+#Function to show the graph
+plt.show()
+
