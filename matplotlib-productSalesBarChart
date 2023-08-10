@@ -1,0 +1,26 @@
+#Exercise 5: Read face cream and facewash product sales data and show it using the bar chart
+#The bar chart should display the number of units sold per month for each product. 
+#Add a separate bar for each product in the same chart.
+
+import matplotlib.pyplot as plt
+import numpy as np
+import math
+
+months = np.loadtxt("./profitProductsData.txt", usecols=(0))
+facecream = np.loadtxt("./profitProductsData.txt", usecols=(1))
+facewash = np.loadtxt("./profitProductsData.txt", usecols=(2))
+
+x_axis = np.arange(len(months))
+
+plt.title("Facewash and facecream sales data")
+plt.xlabel("Month number")
+plt.ylabel("Sales units in number")
+
+plt.bar(x_axis - 0.2, facecream, 0.4, label='Facecream')
+plt.bar(x_axis + 0.2, facewash, 0.4, label='Facewash')
+
+plt.legend(['Face cream sales data', 'Face wash sales data'], loc='upper left')
+
+plt.grid(linestyle='--')
+
+plt.show()
