@@ -32,3 +32,4 @@ plt.legend(['Face cream', 'Face wash', 'Toothpaste', 'Bathingsoap', 'Shampoo', '
 
 
 plt.show()
+S
