@@ -1,0 +1,20 @@
+#Exercise 4: Read toothpaste sales data of each month and show it using a scatter plot
+
+import matplotlib.pyplot as plt
+import numpy as np
+import math
+
+months = np.loadtxt("./profitProductsData.txt", usecols=(0))
+toothpaste = np.loadtxt("./profitProductsData.txt", usecols=(3))
+
+plt.title('Tooth paste Sales data')
+plt.xlabel('Month number')
+plt.ylabel('Number of units Sold')
+
+plt.grid(linestyle="--")
+
+plt.scatter(months, toothpaste)
+
+plt.legend(['Tooth paste Sales data'], loc="upper left")
+
+plt.show()
