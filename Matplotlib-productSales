@@ -1,0 +1,34 @@
+#Exercise 3: Read all product sales data and show it  using a multiline plot
+#Display the number of units sold per month for each product using multiline plots. 
+#(i.e., Separate Plotline for each product ).
+
+import matplotlib.pyplot as plt
+import numpy as np
+import math
+
+months = np.loadtxt("./profitProductsData.txt", usecols=(0))
+facecream = np.loadtxt("./profitProductsData.txt", usecols=(1))
+facewash = np.loadtxt("./profitProductsData.txt", usecols=(2))
+toothpaste = np.loadtxt("./profitProductsData.txt", usecols=(3))
+bathingsoap = np.loadtxt("./profitProductsData.txt", usecols=(4))
+shampoo = np.loadtxt("./profitProductsData.txt", usecols=(5))
+moisturizer = np.loadtxt("./profitProductsData.txt", usecols=(6))
+
+plt.title("Sales Data")
+
+plt.xlabel("Month number")
+plt.ylabel("Sales units in number")
+
+plt.ylim(1000, 18000)
+
+plt.plot(months, facecream, marker='o')
+plt.plot(months, facewash, marker='o')
+plt.plot(months, toothpaste, marker='o')
+plt.plot(months, bathingsoap, marker='o')
+plt.plot(months, shampoo, marker='o')
+plt.plot(months, moisturizer, marker='o')
+
+plt.legend(['Face cream', 'Face wash', 'Toothpaste', 'Bathingsoap', 'Shampoo', 'Moisturizer'], loc='upper left')
+
+
+plt.show()
