@@ -8,10 +8,13 @@ def main():
 	#SOCK_STREAM indicates that it is a TCP socket
 	#If you want to use UDP socket, use SOCK_DGRAM
 	client_sd = socket(AF_INET, SOCK_STREAM)
+
 	#Identify the server that you want to contact
 	server_ip =  '10.0.2.15'
 	port = 12000
+
 	#Connect to the server
+	client_sd.connect((server_ip, port))
 
 	#Send data
 	client_sd.send(message.encode())
@@ -23,3 +26,4 @@ def main():
 	print(received_line)
 
 	#Closing
+	client_sd.close()
