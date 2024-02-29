@@ -6,7 +6,7 @@ def main():
 	server_sd = socket (AF_INET, SOCK_STREAM)
 	#Define how the client can connect
 	port = 12000
-	server_ip = ' 10.0.2.15'
+	server_ip = '127.0.0.1'
 
 	#Wait for a connection, and create a new socket "conn_sd" for that connection
 	server_sd.bind((server_ip, port))

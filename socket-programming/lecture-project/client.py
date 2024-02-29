@@ -10,7 +10,7 @@ def main():
 	client_sd = socket(AF_INET, SOCK_STREAM)
 
 	#Identify the server that you want to contact
-	server_ip =  '10.0.2.15'
+	server_ip =  '127.0.0.1'
 	port = 12000
 
 	#Connect to the server
