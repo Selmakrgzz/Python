@@ -27,3 +27,5 @@ def main():
 	#Closing code
 	conn_sd.close()
 	server_sd.close()
+
+main()

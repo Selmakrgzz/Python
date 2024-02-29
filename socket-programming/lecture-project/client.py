@@ -27,3 +27,5 @@ def main():
 
 	#Closing
 	client_sd.close()
+
+main()
