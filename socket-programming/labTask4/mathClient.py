@@ -17,13 +17,8 @@ def main():
     
     equation = input('Connected to the server. Enter a mathematical operation (e.g., "7 + 10"):')
 
-    if equation != "":
-        message = "okay"
-    else:
-        message = "no"
-
     # Send data
-    client_sd.send(message.encode())
+    client_sd.send(equation.encode())
 
     # Read data from the socket
     received_line = client_sd.recv(1024).decode()
