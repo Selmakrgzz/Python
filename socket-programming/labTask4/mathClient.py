@@ -24,7 +24,9 @@ def main():
     received_line = client_sd.recv(1024).decode()
 
     # Print
-    print(received_line)
+    result = f"Result from server : {received_line}"
+
+    print(result)
 
     # Closing
     client_sd.close()

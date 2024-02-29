@@ -95,11 +95,11 @@ def main():
         
 	#Read data from the client and print
 	received_line = conn_sd.recv(1024).decode()
-	result = f"The result of the equation: {received_line} is : {calculation(received_line)}"
+	result = calculation(received_line)
 	print(result)
 
 	#Send data back over the connection
-	conn_sd.send(result.encode())
+	conn_sd.send(str(result).encode())
 
 	#Closing code
 	conn_sd.close()
