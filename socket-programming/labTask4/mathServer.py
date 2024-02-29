@@ -28,4 +28,5 @@ def main():
 	conn_sd.close()
 	server_sd.close()
 
-main()
+if __name__ == "__main__":
+    main()
