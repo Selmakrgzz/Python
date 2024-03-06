@@ -1,34 +1,36 @@
-# Necessary packages
 from socket import *
+import sys
+
 
 def main():
     # Create a socket called "client_sd"
     # AF_INET indicates that the underlying network is using IPv4
     # SOCK_STREAM indicates that it is a TCP socket
     # If you want to use a UDP socket, use SOCK_DGRAM
-    client_sd = socket(AF_INET, SOCK_STREAM)
 
     # Identify the server that you want to contact
     server_ip = '127.0.0.1'
-    port = 8000
+    serverPort = 4848
 
-    # Connect to the server
-    client_sd.connect((server_ip, port))
-    
-    equation = input('Connected to the server. Enter a mathematical operation (e.g., "7 + 10"):')
-
-    # Send data
-    client_sd.send(equation.encode())
-
-    # Read data from the socket
-    received_line = client_sd.recv(1024).decode()
-
-    # Print
-    result = f"Result from server : {received_line}"
-
-    print(result)
-
+    clientSocket = socket(AF_INET, SOCK_STREAM)
+    try:
+        # Connect to the server
+        clientSocket.connect((server_ip,serverPort))
+    except:
+        print("Connection Error")
+        sys.exit()
+    while True:
+        equation = input('Enter an mathematical operation:')
+        # Send data
+        clientSocket.send(equation.encode())
+        # Read data from the socket
+        received_line = clientSocket.recv(1024)
+        # Print
+        print ('From Server:', received_line.decode())
+        if (equation == "exit"):
+            break
     # Closing
-    client_sd.close()
+    clientSocket.close()
 
-main()
+if __name__ == '__main__':
+	main()

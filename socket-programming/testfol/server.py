@@ -1,7 +1,6 @@
 #Necessary packages
 from socket import *
-import _thread as thread
-import sys
+import threading
 
 #Operations
 def addition(num1, num2):
@@ -73,66 +72,53 @@ def calculation(equation):
             operand=list[i] #Assigning the val to the operand variable
     return sum
 
+def handleClient(conn_sd, addr):
+		print(f"New connection from {addr}")  # Print message that the server has connected to the given IP and port
 
-def handleClient(connection, addr):
-    print(f"Accepted connection from {addr}")
+		while True:
+			# Read data from the client and print
+			received_line = conn_sd.recv(1024).decode()
 
-    while True:
-        received_line = connection.recv(1024).decode()
+			if received_line == "exit":
+				print(f"Connection from {addr} closed.")
+				break
+			else:
+				result = calculation(received_line)
+				print(result)
 
-        if  received_line == "exit":
-            break
-        else:
-            print(f"Received equation: {received_line}")
-
-            #Read data from the client and print
-            result = calculation(received_line)
-
-            #Send data back over the connection
-            connection.send(str(result).encode())
-		
-    connection.close()
-    print(f"Connection with {addr} closed")
-
-
+				# Send data back over the connection
+				conn_sd.send(str(result).encode())
+							
+		#Closing the connection
+		conn_sd.close()
 
 def main():
-    #Define how the client can connect
-    server_ip = '127.0.0.1'
-    serverPort = 4848
+	#Create a socket called "server_sd"
+	server_sd = socket (AF_INET, SOCK_STREAM)
+	#Define how the client can connect
+	port = 8000
+	server_ip = '127.0.0.12'
 
-    #Create a socket called "server_sd"
-    serverSocket = socket(AF_INET,SOCK_STREAM)
-
-    try:
-        #Wait for a connection, and create a new socket "conn_sd" for that connection
-        serverSocket.bind((server_ip,serverPort))
-    except: 
-        print("Bind failed. Error : ")
-        sys.exit()
-
-    #Skriver ut melding til terminalen at serveren venter på gitt ip og port
-    print(f"Server listening on {server_ip} :{serverPort}")
-
-    #Activating listening on the socket
-    serverSocket.listen(1)
-
-    #Skriver ut melding at serveren venter på kobling
-    print("Waiting for connections...")
-
-    while True:
-        #Server waits on accept() for connections
-        connectionSocket, addr = serverSocket.accept() 
-
-        #Skriver ut melding at server har koblet til gitt ip og port
-        print(f"New connection from {addr}") 
-        thread.start_new_thread(handleClient, (connectionSocket, addr))
+	#Wait for a connection, and create a new socket "conn_sd" for that connection
+	server_sd.bind((server_ip, port))
         
-        if not handleClient:
-            break
-    serverSocket.close()
-             
-    
+	print(f"Server listening on {server_ip}:{port}") #Skriver ut melding til terminalen at serveren venter på gitt ip og port
+	
+	#Activating listening on the socket
+	server_sd.listen(1)
+        
+	print("Waiting for connections...") #Skriver ut melding at serveren venter på kobling
 
-if __name__ == '__main__':
-	main()
+	while True:
+        # Server waits on accept() for connections
+		conn_sd, addr = server_sd.accept()
+
+		# Create a new thread for each client
+		client_thread = threading.Thread(target=handleClient, args=(conn_sd, addr))
+		client_thread.start()
+
+	# Closing the server socket when done
+	server_sd.close()
+
+if __name__ == "__main__":
+    main()
