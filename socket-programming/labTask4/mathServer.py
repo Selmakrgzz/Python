@@ -55,7 +55,7 @@ def calculation(equation):
                 num1=list[i] #Assigning num1 to val on index i
                 #print(f"num nr{i}: {num1}") 
             else:
-                num2=list[i] #If the operand is not emty(we have passed an operand), we'll assign the num2 to the second val
+                num2=list[i] #If the operand is not emty(we have passed an operand), we will assign the num2 to the second val
                 #print(f"num nr{i}: {num2}")
                 if operand == '+': #If the operand is the given operation
                     sum=addition(num1, num2)
