@@ -1,1 +1,0 @@
-Basic weather application made with python in virtual environment. Used API to receive weather data from openweathermap.org.
